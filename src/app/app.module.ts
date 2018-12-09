@@ -12,6 +12,12 @@ import { StoreModule, MetaReducer } from "@ngrx/store";
 
 import { environment } from "../environments/environment.prod";
 
+//reducers
+import { TicketReducer } from "./store/reducers/ticket.reducer";
+
+//service
+import { PriceService } from "./services/price.service";
+
 //not in production
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { storeFreeze } from "ngrx-store-freeze"; //ngrx-store-freeze is a meta-reducer that prevents state from being mutated, only for developmment
@@ -29,10 +35,15 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({}, { metaReducers }),
+    StoreModule.forRoot(
+      {
+        ticket: TicketReducer
+      },
+      { metaReducers }
+    ),
     StoreDevtoolsModule.instrument({})
   ],
-  providers: [],
+  providers: [PriceService],
   bootstrap: [AppComponent],
   exports: []
 })

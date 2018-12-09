@@ -9,18 +9,23 @@
 
 <div class="right" *ngIf="tickets$">
   <div fxFlex="column" fxFlex="100%">
-    <div fxLayoutAlign="start center" style="margin-top: 10px;">
-      <span></span> <span fxFlex></span>
-      <span fxLayoutAlign="end center"
-        ><button style="margin: 0px 8px;" mat-mini-fab color="basic">
-          <mat-icon>delete</mat-icon>
-        </button></span
+    <div
+      fxLayoutAlign="start center"
+      *ngFor="let ticket of (tickets$ | async); let i = index"
+      style="margin-top: 10px;"
+    >
+      <span
+        >{{ ticket?.firstName }} {{ ticket?.surname }}, {{ ticket?.age }} let.
+        typ: <b>{{ ticket?.productName }}</b
+        >, cena: <b>{{ ticket?.price }} CZK</b></span
       >
-      <span fxLayoutAlign="end center"
-        ><button style="margin: 0px 8px;" mat-mini-fab color="primary">
-          <mat-icon>edit</mat-icon>
-        </button></span
-      >
+      <span fxFlex></span>
     </div>
   </div>
+</div>
+
+<div>
+  <!--
+    <button mat-raised-button color="primary">Vytvořit objednávku</button>
+  -->
 </div>

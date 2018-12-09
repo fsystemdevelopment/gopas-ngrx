@@ -1,0 +1,103 @@
+<mat-card>
+  <form
+    novalidate
+    #personFormCtrl="ngForm"
+    (ngSubmit)="onSubmit(personForm)"
+    [formGroup]="personForm"
+  >
+    <div class="form-container">
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="Jméno"
+          formControlName="firstName"
+          required
+        />
+        <mat-error *ngIf="personForm.get('firstName').errors?.required"
+          >Toto pole je povinné</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="Příjmení"
+          formControlName="surname"
+          required
+        />
+        <mat-error *ngIf="personForm.get('surname').errors?.required"
+          >Toto pole je povinné</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          type="number"
+          placeholder="Věk"
+          formControlName="age"
+          required
+        />
+        <mat-error *ngIf="personForm.get('age').errors?.required"
+          >Toto pole je povinné</mat-error
+        >
+      </mat-form-field>
+
+      <div fxLayout="row">
+        <div style="margin: 10px 0px;">
+          <button mat-raised-button color="primary" type="submit">
+            Spočítat &raquo;
+          </button>
+        </div>
+
+        <div *ngIf="editFlag" style="margin: 10px 10px;">
+          <button mat-raised-button color="basic">
+            Zrušit editaci &raquo;
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-card>
+
+<!-- TICKET PRODUCTS -->
+<mat-card style="margin: 20px 0px;" *ngFor="let product of products">
+  <div
+    style="height: 37px;"
+    fxFlex="100%"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+  >
+    <div>
+      Typ vstupenky: <b>{{ product?.productName }}</b>
+    </div>
+
+    <div fxFlex></div>
+
+    <div *ngIf="product.productName == 'CLASSIC'">
+      <span style="font-weight: lighter;">Běžná vstupenka</span>
+    </div>
+
+    <div *ngIf="product.productName == 'VIP'">
+      <span style="font-weight: lighter;">Běžná vstupenka + občerstvení</span>
+    </div>
+
+    <div fxFlex></div>
+
+    <div>Cena: {{ product?.price }} CZK</div>
+
+    <div fxFlex></div>
+
+    <div>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="chooseProduct($event, product)"
+      >
+        Vybrat vstupenku &raquo;
+      </button>
+    </div>
+  </div>
+</mat-card>
