@@ -1,6 +1,30 @@
-<p>
-  home works!
+<div fxFlex="100%" fxLayout="column">
 
-  <button mat-raised-button color="primary">Primary</button>
+  <div style="min-height: 68px;">
+  <mat-toolbar color="primary" fxFlex="100%">
+    <mat-toolbar-row fxLayoutAlign="start center">
+      <div ><h1>ANGULAR NGRX</h1></div>
+     
+    </mat-toolbar-row>
+  </mat-toolbar>
+  </div>
 
-</p>
+  <div fxLayout="row">
+    <div fxFlex="36%" >
+      <mat-card style="min-height: 500px;">
+      <app-home-sidebar></app-home-sidebar>
+      </mat-card>
+    </div>
+
+    <div fxFlex="1%">
+      </div>
+
+    <div fxFlex >
+      <app-home-detail></app-home-detail>
+    </div>
+
+    <div fxFlex="1%">
+    </div>
+  </div>
+
+</div>
