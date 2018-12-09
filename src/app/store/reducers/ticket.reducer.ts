@@ -1,17 +1,23 @@
 import { Ticket } from "../../store/models/ticket.model";
 import * as TicketActions from "../actions/ticket.action";
+import * as _ from "lodash";
 
-// Section 2
 export function TicketReducer(
   state: Ticket[] = [],
   action: TicketActions.Actions
 ) {
-  // Section 3
   switch (action.type) {
     case TicketActions.ADD_TICKET:
-      console.log(state);
-      console.log("action.payload: ", action.payload);
       return [...state, action.payload];
+
+    case TicketActions.REMOVE_TICKET:
+      state.splice(action.payload, 1);
+      return state;
+
+    case TicketActions.EDIT_TICKET:
+      state[action.payload.index] = action.payload;
+      delete action.payload.index; //do not save index to Store, should be done using Id from database for every product
+      return state;
 
     default:
       return state;

@@ -17,6 +17,7 @@ import { TicketReducer } from "./store/reducers/ticket.reducer";
 
 //service
 import { PriceService } from "./services/price.service";
+import { ShareTicketIdService } from "./services/share-ticket-id.service";
 
 //not in production
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
@@ -43,7 +44,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     ),
     StoreDevtoolsModule.instrument({})
   ],
-  providers: [PriceService],
+  providers: [PriceService, ShareTicketIdService],
   bootstrap: [AppComponent],
   exports: []
 })
