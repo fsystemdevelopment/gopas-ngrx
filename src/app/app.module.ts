@@ -23,6 +23,10 @@ import { ShareTicketIdService } from "./services/share-ticket-id.service";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { storeFreeze } from "ngrx-store-freeze"; //ngrx-store-freeze is a meta-reducer that prevents state from being mutated, only for developmment
 
+//Effects
+import { EffectsModule } from "@ngrx/effects";
+import { SumEffect } from "./store/effects/sum.effect";
+
 export const metaReducers: MetaReducer<any>[] = !environment.production
   ? [storeFreeze]
   : [];
@@ -36,6 +40,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    EffectsModule.forRoot([SumEffect]),
     StoreModule.forRoot(
       {
         ticket: TicketReducer

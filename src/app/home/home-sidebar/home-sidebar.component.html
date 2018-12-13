@@ -1,45 +1,28 @@
 <h2 style="border-bottom: 1px solid #fff;">
-  <mat-icon
-    style="position: relative;
-    top: 2px;"
-    >assignment
-  </mat-icon>
-  Osoby na vstupence
+  <mat-icon style="position: relative;
+    top: 2px;">assignment
+  </mat-icon> Osoby na vstupence
 </h2>
 
+
 <div class="right" *ngIf="tickets$">
-  <div fxFlex="column" fxFlex="100%">
-    <div
-      fxLayoutAlign="start center"
-      *ngFor="let ticket of (tickets$ | async); let i = index"
-      style="margin-top: 10px;"
-    >
-      <span
-        >{{ ticket?.firstName }} {{ ticket?.surname }}, {{ ticket?.age }} let.
-        typ: <b>{{ ticket?.productName }}</b
-        >, cena: <b>{{ ticket?.price }} CZK</b></span
-      >
+
+  <div fxFlex="column" fxFlex="100%" >
+     <div fxLayoutAlign="start center" *ngFor="let ticket of tickets$ | async; let i = index" style="margin-top: 10px;">
+      <span>{{ticket?.firstName}} {{ticket?.surname}}, {{ticket?.age}} let. typ: <b>{{ticket?.productName}}</b>, cena: <b>{{ticket?.price}} CZK</b></span>
       <span fxFlex></span>
-      <span fxLayoutAlign="end center"
-        ><button
-          style="margin: 0px 8px;"
-          mat-mini-fab
-          color="basic"
-          (click)="deleteTicket(i)"
-        >
-          <mat-icon>delete</mat-icon>
-        </button></span
-      >
-      <span fxLayoutAlign="end center"
-        ><button
-          style="margin: 0px 8px;"
-          mat-mini-fab
-          color="primary"
-          (click)="editTicket(i)"
-        >
-          <mat-icon>edit</mat-icon>
-        </button></span
-      >
+      <span fxLayoutAlign="end center"><button style="margin: 0px 8px;" mat-mini-fab color="basic" (click)="deleteTicket(i)"><mat-icon>delete</mat-icon></button></span>
+      <span fxLayoutAlign="end center"><button style="margin: 0px 8px;" mat-mini-fab color="primary" (click)="editTicket(i)"><mat-icon>edit</mat-icon></button></span>
     </div>
+
+    <div *ngIf="result && result?.finalBeforeDiscount != 0 && result?.finalAfterDiscount > 0" style="border-top: 1px solid #fff; margin-top: 50%; padding: 10px 0px;" fxLayoutAlign="start center">
+       Celkem: {{result?.finalBeforeDiscount}},- sleva {{result?.discountPercent}}%, po slevě  <strong> {{result?.finalAfterDiscount}},-</strong>
+    </div>
+
+    <div *ngIf="result && result?.finalBeforeDiscount != 0 && result?.finalAfterDiscount == 0" style="border-top: 1px solid #fff; margin-top: 50%; padding: 10px 0px;" fxLayoutAlign="start center">
+        Celkem: {{result?.finalBeforeDiscount}},-
+     </div>
+   
   </div>
+
 </div>

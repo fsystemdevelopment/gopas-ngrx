@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "./../../environments/environment";
+import { Observable } from "rxjs";
 
 const HOST: string = environment.hostEndpoint;
 
@@ -18,5 +19,10 @@ export class PriceService {
       .catch(err => {
         console.log(err);
       });
+  }
+
+  getDiscount(payload): Observable<any> {
+    console.log("payload: ", payload);
+    return this.httpClient.post(`${HOST}/api/price/discount`, payload);
   }
 }

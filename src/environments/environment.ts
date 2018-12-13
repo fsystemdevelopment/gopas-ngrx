@@ -7,9 +7,6 @@ export const environment = {
   hostEndpoint: "https://gopas.herokuapp.com"
 };
 
-//  hostEndpoint: "https://gopas.herokuapp.com"
-
-
 /*
  * In development mode, to ignore zone related error stack frames such as
  * `zone.run`, `zoneDelegate.invokeTask` for easier debugging, you can
